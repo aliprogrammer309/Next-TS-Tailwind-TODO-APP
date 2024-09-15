@@ -1,5 +1,6 @@
-"use client"
+"use client";
 import React, { useState } from "react";
+import ThemeToggle from "./components/ThemeToggle";
 
 interface Todo {
   id: number;
@@ -40,16 +41,19 @@ const TodoApp: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">
-        Todo App
-      </h1>
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-colors duration-200">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+          Todo App
+        </h1>
+        <ThemeToggle />
+      </div>
       <div className="flex mb-4">
         <input
           type="text"
           value={inputValue}
           onChange={handleInputChange}
-          className="flex-grow px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-grow px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white dark:border-gray-600"
           placeholder="Add a new todo..."
         />
         <button
@@ -63,7 +67,7 @@ const TodoApp: React.FC = () => {
         {todos.map((todo) => (
           <li
             key={todo.id}
-            className="flex items-center justify-between p-3 bg-gray-100 rounded-lg"
+            className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-700 rounded-lg"
           >
             <div className="flex items-center">
               <input
@@ -75,8 +79,8 @@ const TodoApp: React.FC = () => {
               <span
                 className={`${
                   todo.completed
-                    ? "line-through text-gray-500"
-                    : "text-gray-800"
+                    ? "line-through text-gray-500 dark:text-gray-400"
+                    : "text-gray-800 dark:text-white"
                 }`}
               >
                 {todo.text}
