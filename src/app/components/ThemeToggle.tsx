@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "../ThemeProvider";
+import { useTheme } from "../context/ThemeProvider";
 
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
