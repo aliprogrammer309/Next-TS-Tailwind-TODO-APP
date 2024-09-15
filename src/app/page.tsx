@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import ThemeToggle from "./components/ThemeToggle";
+import TodoItem from "./components/TodoItem";
 
 interface Todo {
   id: number;
@@ -65,34 +66,14 @@ const TodoApp: React.FC = () => {
       </div>
       <ul className="space-y-2">
         {todos.map((todo) => (
-          <li
+          <TodoItem
             key={todo.id}
-            className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-700 rounded-lg"
-          >
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => handleToggleTodo(todo.id)}
-                className="mr-2 form-checkbox h-5 w-5 text-blue-500"
-              />
-              <span
-                className={`${
-                  todo.completed
-                    ? "line-through text-gray-500 dark:text-gray-400"
-                    : "text-gray-800 dark:text-white"
-                }`}
-              >
-                {todo.text}
-              </span>
-            </div>
-            <button
-              onClick={() => handleDeleteTodo(todo.id)}
-              className="text-red-500 hover:text-red-700 focus:outline-none"
-            >
-              Delete
-            </button>
-          </li>
+            id={todo.id}
+            text={todo.text}
+            completed={todo.completed}
+            onToggle={handleToggleTodo}
+            onDelete={handleDeleteTodo}
+          />
         ))}
       </ul>
     </div>
